@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+
+     <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Indians</div>
+        <ul class="nav-links">
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <div class="menu">
+                <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Reports</a></li>
+                <li><a href="#"><i class="fas fa-credit-card"></i> Payments</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="profile">
+            <img src="img/vijay.jpg" alt="Profile Picture" class="profile-pic">
+            <div class="profile-info">
+                <h2>Vijay Sharma</h2>
+                <p>Branding Mastery Package</p>
+            </div>
+        </div>
+        
+        <div class="earnings">
+            <div class="earning-card blue">
+                <i class="fas fa-chart-line icon"></i>
+                <p>Today's Earning</p>
+                <h3 id="todayEarning">₹ 0</h3>
+            </div>
+            <div class="earning-card red">
+                <i class="fas fa-chart-line icon"></i>
+                <p>Last 7 Day's Earning</p>
+                <h3 id="last7daysEarning">₹ 0</h3>
+            </div>
+            <div class="earning-card orange">
+                <i class="fas fa-chart-line icon"></i>
+                <p>Last 30 Day's Earning</p>
+                <h3 id="last30daysEarning">₹ 0</h3>
+            </div>
+            <div class="earning-card green">
+                <i class="fas fa-chart-line icon"></i>
+                <p>Total Earning</p>
+                <h3 id="totalEarning">₹ 0</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+        // Function to update earnings dynamically with counting effect
+        function updateEarnings() {
+            var todayEarning = 5042;
+            var last7daysEarning = 12040;
+            var last30daysEarning = 112332;
+            var totalEarning = 2000000;
+    
+            // Function to animate the counting effect
+            function countUp(element, targetValue, duration) {
+                var start = 0;
+                var increment = targetValue / duration;
+                var current = 0;
+                var timer = setInterval(function() {
+                    current += increment;
+                    element.innerText = "₹ " + Math.round(current);
+                    if (current >= targetValue) {
+                        clearInterval(timer);
+                        element.innerText = "₹ " + targetValue;
+                    }
+                }, 1);
+            }
+    
+            // Animate counting effect for each earnings element
+            countUp(document.getElementById("todayEarning"), todayEarning, 300); // 2000 milliseconds (2 seconds) duration
+            countUp(document.getElementById("last7daysEarning"), last7daysEarning, 300); // 3000 milliseconds (3 seconds) duration
+            countUp(document.getElementById("last30daysEarning"), last30daysEarning, 300); // 5000 milliseconds (5 seconds) duration
+            countUp(document.getElementById("totalEarning"), totalEarning, 300); // 8000 milliseconds (8 seconds) duration
+        }
+    
+        // Call the function to update earnings when the page loads
+        window.onload = updateEarnings;
+    </script>
+</body>
+</html>
